@@ -28,9 +28,9 @@ execute buildTool = do
 
 dotGHCI = ""
 
-dotGHCIDStack = "--command=stack repl --ghc-options='-j' --allow-eval"
+dotGHCIDStack = "--command=\"stack repl --ghc-options='-j'\" --allow-eval"
 
-dotGHCIDCabal = "--command=cabal v2-repl --ghc-options'-j' --allow-eval"
+dotGHCIDCabal = "--command=\"cabal v2-repl --ghc-options'-j'\" --allow-eval"
 
 buildToolconfig = \case
   Stack -> dotGHCIDStack
