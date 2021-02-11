@@ -10,8 +10,11 @@ import System.FilePath ((</>))
 data BuildTool = Stack | Cabal
   deriving stock (Show, Eq, Ord, Data, Typeable)
 
+
+
 main :: IO ()
 main = do
+  print $ "Version 0.2.0"
   buildTool <- cmdArgs (modes [Stack, Cabal &= auto])
   putStrLn $ "writing ghcid config for " <> show buildTool
   execute buildTool
@@ -28,9 +31,11 @@ execute buildTool = do
 
 dotGHCI = ""
 
-dotGHCIDStack = "--command=\"stack repl --ghc-options='-j'\" --allow-eval"
 
-dotGHCIDCabal = "--command=\"cabal v2-repl --ghc-options'-j'\" --allow-eval"
+
+dotGHCIDStack = "--command=\"stack repl \" --allow-eval"
+
+dotGHCIDCabal = "--command=\"cabal new-repl --disable-optimization --repl-options=-fobject-code\" --allow-eval"
 
 buildToolconfig = \case
   Stack -> dotGHCIDStack
